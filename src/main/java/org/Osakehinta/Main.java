@@ -34,5 +34,10 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        StockFollowing stockFollowing = new StockFollowing();
+        stockFollowing.collectStockSymbols();
+        stockFollowing.printStockSymbols();
+        stockFollowing.deleteStockFollowing();
+        stockFollowing.printStockSymbols();
     }
 }
