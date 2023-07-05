@@ -10,11 +10,14 @@ class StockFollowing {
         stockFollowList = new ArrayList<>();
     }
 
+    public ArrayList<String> getStockFollowList() {
+        return stockFollowList;
+    }
+
     public void collectStockSymbols() {
-        String stockSymbol;
         while (true) {
             System.out.print("Enter the stock symbol of the stock you want to follow. Type 'stop' if you want to stop adding stock follows: ");
-            stockSymbol = scanner.nextLine();
+            String stockSymbol = scanner.nextLine();
             if (stockSymbol.equals("stop")) {
                 break;
             }
@@ -48,4 +51,5 @@ class StockFollowing {
             }
         }
     }
+
 }

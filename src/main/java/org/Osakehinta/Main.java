@@ -10,34 +10,10 @@ import com.google.gson.JsonParser;
 
 public class Main {
     public static void main(String[] args) {
-        //API key
-        String apiURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=NVDA&apikey=LOJCQIVJYQ0D2H2Q";
+        StockFollowing myStocks = new StockFollowing();
+        myStocks.collectStockSymbols();
 
-        //HTTPClient instance
-        HttpClient httpClient = HttpClientBuilder.create().build();
-
-        try {
-            //GET request to the API
-            HttpGet request = new HttpGet(apiURL);
-            HttpResponse response = httpClient.execute(request);
-
-            //Parse the JSON response
-            String jsonResponse = EntityUtils.toString(response.getEntity());
-            JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-
-            // Extract the stock price from the JSON data
-            JsonObject globalQuote = jsonObject.getAsJsonObject("Global Quote");
-            String stockPrice = globalQuote.get("05. price").getAsString();
-
-            // Print the stock price
-            System.out.println("Current stock price: " + stockPrice);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        StockFollowing stockFollowing = new StockFollowing();
-        stockFollowing.collectStockSymbols();
-        stockFollowing.printStockSymbols();
-        stockFollowing.deleteStockFollowing();
-        stockFollowing.printStockSymbols();
+        PriceOfFollowedStocks myPrices = new PriceOfFollowedStocks();
+        myPrices.priceOfFollowedStocks(myStocks.getStockFollowList());
     }
 }
