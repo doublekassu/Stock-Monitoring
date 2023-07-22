@@ -14,6 +14,11 @@ public class Main {
         myStocks.collectStockSymbols();
 
         PriceOfFollowedStocks myPrices = new PriceOfFollowedStocks();
+        myPrices.setAPIkey();
         myPrices.priceOfFollowedStocks(myStocks.getStockFollowList());
+
+        myStocks.printStockSymbols();
+        myStocks.deleteStockFollowing();
+        myStocks.printStockSymbols();
     }
 }

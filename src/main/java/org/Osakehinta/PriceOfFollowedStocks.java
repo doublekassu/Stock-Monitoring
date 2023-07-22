@@ -13,32 +13,49 @@ import java.util.Scanner;
 
 
 class PriceOfFollowedStocks {
+    private String APIkey;
+    private int APIkeylength = 16;
     Scanner scanner = new Scanner(System.in);
-    public void priceOfFollowedStocks(ArrayList<String> stockList) {
+
+    public void setAPIkey() {
         System.out.print("Set your Alpha Vantage API key: ");
-        String APIkey = scanner.nextLine();
+        APIkey = scanner.nextLine();
+        if (APIkey.length() == APIkeylength) {
+            System.out.println("The given API key is correct");
+        }
+        else {
+            System.out.println("The given API key is incorrect");
+            APIkey = "";
+        }
+    }
+    public void priceOfFollowedStocks(ArrayList<String> stockList) {
         //HTTPClient instance
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
         try {
-            for (String symbol : stockList) {
-                //API URL for each stock symbol
-                String apiURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + APIkey;
+            if (APIkey.length() == APIkeylength) {
+                for (String symbol : stockList) {
+                    //API URL for each stock symbol
+                    String apiURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + APIkey;
 
-                //GET request to the API
-                HttpGet request = new HttpGet(apiURL);
-                HttpResponse response = httpClient.execute(request);
+                    //GET request to the API
+                    HttpGet request = new HttpGet(apiURL);
+                    HttpResponse response = httpClient.execute(request);
 
-                // Parse the JSON response
-                String jsonResponse = EntityUtils.toString(response.getEntity());
-                JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+                    // Parse the JSON response
+                    String jsonResponse = EntityUtils.toString(response.getEntity());
+                    JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
 
-                // Extract the stock price from the JSON data
-                JsonObject globalQuote = jsonObject.getAsJsonObject("Global Quote");
-                String stockPrice = globalQuote.get("05. price").getAsString();
+                    // Extract the stock price from the JSON data
+                    JsonObject globalQuote = jsonObject.getAsJsonObject("Global Quote");
+                    String stockPrice = globalQuote.get("05. price").getAsString();
 
-                //Print the stock price
-                System.out.println("The closing price of " + symbol + ": " + stockPrice);
+                    //Print the stock price
+                    System.out.println("The closing price of " + symbol + ": " + stockPrice);
+                }
+            }
+            else {
+                System.out.println("The given API key is incorrect");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -27,7 +27,7 @@ class StockFollowing {
 
     public void printStockSymbols() {
         if (stockFollowList.isEmpty()) {
-            System.out.println("You haven't followed any stocks");
+            System.out.println("You're not following any stocks");
         }
         else {
             for (String symbol : stockFollowList) {
@@ -38,7 +38,7 @@ class StockFollowing {
 
     public void deleteStockFollowing() {
         if (stockFollowList.isEmpty()) {
-            System.out.println("You haven't followed any stocks");
+            System.out.println("You're not following any stocks");
         }
         else {
             System.out.print("What stock would you like to stop following? ");
