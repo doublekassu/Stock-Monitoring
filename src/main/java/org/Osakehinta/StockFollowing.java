@@ -26,11 +26,19 @@ class StockFollowing {
     }
 
     public void printStockSymbols() {
+        int calculator = 1;
         if (stockFollowList.isEmpty()) {
             System.out.println("You're not following any stocks");
         } else {
+            System.out.println("\n Right now you are following these stocks: ");
             for (String symbol : stockFollowList) {
-                System.out.println(symbol);
+                if (calculator == stockFollowList.size()) {
+                    System.out.println(symbol + "\n");
+                }
+                else {
+                    System.out.print(symbol + ", ");
+                }
+                calculator++;
             }
         }
     }
@@ -40,12 +48,19 @@ class StockFollowing {
             if (stockFollowList.isEmpty()) {
                 System.out.println("You're not following any stocks");
             } else {
-                System.out.print("What stock would you like to stop following? ");
+                printStockSymbols();
+                System.out.print("Type the stock you want to stop following. To stop removing stocks press ENTER: ");
                 String stockSymbol = scanner.nextLine();
+
                 if (stockFollowList.contains(stockSymbol)) {
+                    System.out.println(stockSymbol + " removed successfully!");
                     stockFollowList.remove(stockSymbol);
-                    break;
-                } else {
+                }
+                else if (stockSymbol.equals("")) {
+                    System.out.println("Exiting stock removing menu \n");
+                        break;
+                    }
+                else {
                     System.out.println("You're not following that stock.");
                 }
             }

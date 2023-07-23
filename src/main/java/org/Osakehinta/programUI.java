@@ -20,6 +20,12 @@ class programUI {
             } else if (option.equals("1")) {
                 stockFollowingMenu();
             }
+            else if (option.equals("2")) {
+                stockFollowing.printStockSymbols();
+            }
+            else {
+                System.out.println("Incorrect input, check for a typo.");
+            }
         }
     }
 
