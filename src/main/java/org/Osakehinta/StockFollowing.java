@@ -28,8 +28,7 @@ class StockFollowing {
     public void printStockSymbols() {
         if (stockFollowList.isEmpty()) {
             System.out.println("You're not following any stocks");
-        }
-        else {
+        } else {
             for (String symbol : stockFollowList) {
                 System.out.println(symbol);
             }
@@ -37,19 +36,19 @@ class StockFollowing {
     }
 
     public void deleteStockFollowing() {
-        if (stockFollowList.isEmpty()) {
-            System.out.println("You're not following any stocks");
-        }
-        else {
-            System.out.print("What stock would you like to stop following? ");
-            String stockSymbol = scanner.nextLine();
-            if (stockFollowList.contains(stockSymbol)) {
-                stockFollowList.remove(stockSymbol);
-            }
-            else {
-                System.out.println("You're not following that stock.");
+        while (true) {
+            if (stockFollowList.isEmpty()) {
+                System.out.println("You're not following any stocks");
+            } else {
+                System.out.print("What stock would you like to stop following? ");
+                String stockSymbol = scanner.nextLine();
+                if (stockFollowList.contains(stockSymbol)) {
+                    stockFollowList.remove(stockSymbol);
+                    break;
+                } else {
+                    System.out.println("You're not following that stock.");
+                }
             }
         }
     }
-
 }
