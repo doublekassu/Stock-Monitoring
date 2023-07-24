@@ -13,19 +13,22 @@ import java.util.Scanner;
 
 
 class PriceOfFollowedStocks {
-    private String APIkey;
+    private String APIkey = "";
     private int APIkeylength = 16;
     Scanner scanner = new Scanner(System.in);
 
     public void setAPIkey() {
-        System.out.print("Set your Alpha Vantage API key: ");
-        APIkey = scanner.nextLine();
-        if (APIkey.length() == APIkeylength) {
-            System.out.println("The given API key is correct");
-        }
-        else {
-            System.out.println("The given API key is incorrect");
-            APIkey = "";
+        while (true) {
+            System.out.print("Set your Alpha Vantage API key. To exit to main menu press ENTER: ");
+            APIkey = scanner.nextLine();
+            if (APIkey.length() == APIkeylength) {
+                System.out.println("API key has been set!");
+                break;
+            } else if (APIkey.equals("")) {
+                break;
+            } else {
+                System.out.println("The given API key is incorrect. Please try again.");
+            }
         }
     }
     public void priceOfFollowedStocks(ArrayList<String> stockList) {
@@ -55,7 +58,7 @@ class PriceOfFollowedStocks {
                 }
             }
             else {
-                System.out.println("The given API key is incorrect");
+                System.out.println("You haven't set your API key yet!");
             }
         } catch (Exception e) {
             e.printStackTrace();

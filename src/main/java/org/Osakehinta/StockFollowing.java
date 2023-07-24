@@ -16,9 +16,9 @@ class StockFollowing {
 
     public void collectStockSymbols() {
         while (true) {
-            System.out.print("Enter the stock symbol of the stock you want to follow. Type 'stop' if you want to stop adding stock follows: ");
+            System.out.print("Enter the stock symbol of the stock you want to follow. Press ENTER to stop adding stocks: ");
             String stockSymbol = scanner.nextLine();
-            if (stockSymbol.equals("stop")) {
+            if (stockSymbol.equals("")) {
                 break;
             }
             stockFollowList.add(stockSymbol);
@@ -30,7 +30,7 @@ class StockFollowing {
         if (stockFollowList.isEmpty()) {
             System.out.println("You're not following any stocks");
         } else {
-            System.out.println("\n Right now you are following these stocks: ");
+            System.out.print("\n Right now you are following these stocks: ");
             for (String symbol : stockFollowList) {
                 if (calculator == stockFollowList.size()) {
                     System.out.println(symbol + "\n");
