@@ -63,7 +63,7 @@ class programUI {
             } else if (option.equals("2")) {
                 priceOfFollowedStocks.priceOfFollowedStocks(stockFollowing.getStockFollowList());
             } else if (option.equals("0")) {
-                //Exiting to main menu /
+                //Exiting to main menu //
                 break;
             } else {
                 System.out.println("Incorrect input, check for a typo.");
